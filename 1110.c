@@ -24,8 +24,7 @@ int main(void)
 
     clear_string(strptr, LIMIT);
     strptr = get(data, LIMIT);
-    while(getchar()!= '\n')
-      continue;
+
   }
 
   puts("Bye");
@@ -34,11 +33,28 @@ int main(void)
 
 void nospace(char *string)
 {
+  unsigned long spaces_found = 0;
+
+  	while (1)
+  	{
+  		if (*string == ' ')
+  			spaces_found++;
+  		else
+  			*(string - spaces_found) = *string;
+
+  		// if end of string, break
+  		if (*string == '\0')
+  			break;
+
+  		string++;
+  	}
+
+/*
   char temp[LIMIT];
   int i;
   int j = 0;
 
-  for(i=0; (i<LIMIT) /*&& (*(string+i)!='\0')*/; i++)
+  for(i=0; (i<LIMIT); i++)
   {
     if(!isspace(*(string+i)))
     {
@@ -49,6 +65,7 @@ void nospace(char *string)
 
   clear_string(string, LIMIT);
   strcpy(string, temp);
+*/
 }
 
 void clear_string(char *string, int n)
@@ -64,7 +81,10 @@ char *get(char *string, int n)
   while(*string != '\0')
   {
     if(*string == '\n')
+    {
       *string = '\0';
+      break;
+    }
 
     string++;
   }
