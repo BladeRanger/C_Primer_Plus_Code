@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     puts(data[i]);
 
   for(int i=0; i<ROW; i++)
-    for(int j=0; j<COLUMN; j++)
+    for(int j=0; j<COLUMN+1; j++)
       picture[i][j] = transfer(data[i][j]);
 
   puts("\nHere is the picture:\n");
